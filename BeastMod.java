@@ -1,5 +1,6 @@
 package anonmine.beastmod;
 
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -7,6 +8,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import anonmine.beastmod.event.OnSpawnEvent;
 import anonmine.beastmod.init.BeastModEntities;
 import anonmine.beastmod.init.BeastModItems;
 import anonmine.beastmod.proxy.CommonProxy;
@@ -24,8 +26,8 @@ public class BeastMod {
 	public void preInit(FMLPreInitializationEvent event){
 		BeastModItems.init();
 		BeastModItems.register();
-		
 		BeastModEntities.register();
+		//FMLCommonHandler.instance().bus().register(new OnSpawnEvent());
 	}
 
 	@EventHandler

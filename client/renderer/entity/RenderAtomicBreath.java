@@ -4,11 +4,13 @@ import org.lwjgl.opengl.GL11;
 
 import anonmine.beastmod.Reference;
 import anonmine.beastmod.common.entity.projectile.EntityAtomicBreath;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
@@ -34,48 +36,54 @@ public class RenderAtomicBreath extends Render {
 		this.doRender((EntityAtomicBreath)entity, transx, transy, transz, param5, dir);
 	}
 	public void doRender(EntityAtomicBreath atomicBreath, double transx, double transy, double transz, float param5, float dir){
+
+
+		float scale = 1.0F;
+		int frame = atomicBreath.ticksExisted * 14 / atomicBreath.getDuration() ;
 		
 		this.bindEntityTexture(atomicBreath);
-		
+
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.pushMatrix();
-		
-		
-		GlStateManager.translate(transx, transy, transz);
-		GlStateManager.rotate(atomicBreath.prevRotationYaw + (atomicBreath.rotationYaw - atomicBreath.prevRotationYaw) * dir - 90.0F, 0.0F	, 1.0F, 0.0F);
-		GlStateManager.rotate(atomicBreath.getRandomTilt(), 1.0F, 0.0F, 0.0F);
+		GlStateManager.disableLighting();
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240F, 240F);
+
+        GlStateManager.translate((float)transx, (float)transy, (float)transz);
+        GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
+        GlStateManager.rotate(atomicBreath.rotationPitch+90F, 0.0F, 0.0F, 1.0F);
+
+//		
+//		GlStateManager.translate(transx, transy, transz);
+//		GlStateManager.rotate(atomicBreath.prevRotationYaw + (atomicBreath.rotationYaw - atomicBreath.prevRotationYaw) * dir - 90.0F, 0.0F	, 1.0F, 0.0F);
+//		GlStateManager.rotate(atomicBreath.getRandomTilt(), 1.0F, 0.0F, 0.0F);
 		
 		Tessellator tes = Tessellator.getInstance();
 		WorldRenderer worldRenderer = tes.getWorldRenderer();
 		
 		GlStateManager.enableRescaleNormal();
-		
-		float scale = 1.05F;
-		
 		GlStateManager.scale(scale, scale, scale);
 		
 		GL11.glNormal3f(0.0F, 0.0F, scale);
-		
-		worldRenderer.startDrawingQuads();
-		worldRenderer.addVertexWithUV(-2.0D, -2.0D, 0.0D, 0.0D, 0.0D);
-		worldRenderer.addVertexWithUV(2.0D, -2.0D, 0.0D, 1.0D, 0.0D);
-		worldRenderer.addVertexWithUV(2.0D, 2.0D, 0.0D, 1.0D, 1.0D);
-		worldRenderer.addVertexWithUV(-2.0D, 2.0D, 0.0D, 0.0D, 1.0D);
-		tes.draw();
+
 		
 		GlStateManager.rotate(180.0F, 1.0F, 0.0F, 0.0F);
 
 		worldRenderer.startDrawingQuads();
-		worldRenderer.addVertexWithUV(-2.0D, -2.0D, 0.0D, 0.0D, 0.0D);
-		worldRenderer.addVertexWithUV(2.0D, -2.0D, 0.0D, 1.0D, 0.0D);
-		worldRenderer.addVertexWithUV(2.0D, 2.0D, 0.0D, 1.0D, 1.0D);
-		worldRenderer.addVertexWithUV(-2.0D, 2.0D, 0.0D, 0.0D, 1.0D);
+		worldRenderer.addVertexWithUV(-2.0D, -2.0D, 0.0D, 0.0D,(0.0D + frame)/14D);
+		worldRenderer.addVertexWithUV(2.0D, -2.0D, 0.0D, 1.0D, (0.0D + frame)/14D);
+		worldRenderer.addVertexWithUV(2.0D, 2.0D, 0.0D, 1.0D,  (1.0D + frame)/14D);
+		worldRenderer.addVertexWithUV(-2.0D, 2.0D, 0.0D, 0.0D, (1.0D + frame)/14D);
 		tes.draw();
-		
+
 		GlStateManager.disableRescaleNormal();
+		
+		
+		GlStateManager.enableLighting();
 		GlStateManager.popMatrix();
 		
 		super.doRender(atomicBreath, transx, transy, transz, param5, dir);
+		
 		
 	}
 	

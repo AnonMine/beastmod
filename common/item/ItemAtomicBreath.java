@@ -33,9 +33,9 @@ public class ItemAtomicBreath extends Item{
 		
 		if (!worldObj.isRemote){
 			EntityAtomicBreath ab = new EntityAtomicBreath(worldObj,player);
-			ab.motionX *= 2;
-			ab.motionY *= 2;
-			ab.motionZ *= 2;
+			ab.motionX *= 2.2;
+			ab.motionY *= 2.2;
+			ab.motionZ *= 2.2;
 			worldObj.spawnEntityInWorld(ab);
 		}
 		
