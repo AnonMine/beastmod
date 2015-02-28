@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import anonmine.beastmod.client.mca.clientlibrary.MCAModelRenderer;
 import anonmine.beastmod.common.mca.commonlibrary.IMCAnimatedEntity;
+import anonmine.beastmod.common.mca.commonlibrary.math.Matrix4f;
 import anonmine.beastmod.common.mca.commonlibrary.math.Quaternion;
 import anonmine.beastmod.common.mca.commonlibrary.math.Vector3f;
 
@@ -229,22 +230,22 @@ public abstract class AnimationHandler {
 						SLERPProgress = 1F;
 					}
 
+
 					if(prevRotationKeyFramePosition == 0 && !(nextRotationKeyFramePosition == 0))
 					{
 						Quaternion currentQuat = new Quaternion();
 						currentQuat.slerp(parts.get(boxName).getDefaultRotationAsQuaternion(), nextRotationKeyFrame.modelRenderersRotations.get(boxName), SLERPProgress);
-						box.getRotationMatrix().set(currentQuat).transpose();
+						box.getRotationMatrix().set(parts.get(boxName).getDefaultRotationAsQuaternion()).transpose();
 
 						anyRotationApplied = true;
 					} else if(!(prevRotationKeyFramePosition == 0) && !(nextRotationKeyFramePosition == 0))
 					{
 						Quaternion currentQuat = new Quaternion();
 						currentQuat.slerp(prevRotationKeyFrame.modelRenderersRotations.get(boxName), nextRotationKeyFrame.modelRenderersRotations.get(boxName), SLERPProgress);
-						box.getRotationMatrix().set(currentQuat).transpose();
+						box.getRotationMatrix().set(parts.get(boxName).getDefaultRotationAsQuaternion()).transpose();
 
 						anyRotationApplied = true;
 					}
-
 
 					//Translations
 					KeyFrame prevTranslationKeyFrame = channel.getPreviousTranslationKeyFrameForBox(boxName, entity.getAnimationHandler().animCurrentFrame.get(channel.name));

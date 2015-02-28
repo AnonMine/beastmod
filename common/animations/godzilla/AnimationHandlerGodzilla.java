@@ -12,7 +12,8 @@ public class AnimationHandlerGodzilla extends AnimationHandler {
 	static
 	{
 	//animChannels.put("loop", new ChannelLoop("loop", 1.0F, 1, Channel.LOOP));
-	//animChannels.put("linear", new ChannelLinear("linear", 1.0F, 1, Channel.LINEAR));
+		//animChannels.put("linear", new ChannelLinear("linear", 1.0F, 1, Channel.LINEAR));
+		animChannels.put("roar", new ChannelRoar("roar", 1.0F, 1, Channel.LINEAR));
 	}
 	public AnimationHandlerGodzilla(IMCAnimatedEntity entity) {
 		super(entity);

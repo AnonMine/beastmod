@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 import anonmine.beastmod.Reference;
 import anonmine.beastmod.client.model.ModelGodzilla;
+import anonmine.beastmod.client.renderer.entity.layers.LayerGodzillaAtomicCharge;
 import anonmine.beastmod.common.entity.giantmonster.EntityGodzilla;
 
 public class RenderGodzilla extends RenderLiving {
@@ -22,6 +23,7 @@ public class RenderGodzilla extends RenderLiving {
 	public RenderGodzilla(float shadowSize)
     {
         super(Minecraft.getMinecraft().getRenderManager(), modelGodzilla, shadowSize);
+        this.addLayer(new LayerGodzillaAtomicCharge(this));
     }
 	
 	@Override

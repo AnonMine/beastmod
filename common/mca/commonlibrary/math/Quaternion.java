@@ -323,7 +323,7 @@ public class Quaternion implements java.io.Serializable {
 			this.set(q1);
 			return this;
 		}
-
+		System.out.println("this should not appear");
 		float result = (q1.x * q2.x) + (q1.y * q2.y) + (q1.z * q2.z)
 				+ (q1.w * q2.w);
 
@@ -439,5 +439,10 @@ public class Quaternion implements java.io.Serializable {
 			w = blendI * w + blend * q2.w;
 		}
 		normalizeLocal();
+	}
+	
+	public String toString(){
+		return "(" + x + ", " + y + ", "+ z+ ", "+ w + ")" ;
+		
 	}
 }

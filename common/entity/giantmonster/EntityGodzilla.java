@@ -9,10 +9,30 @@ import net.minecraft.world.World;
 
 public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity {
 	protected AnimationHandler animHandler = new AnimationHandlerGodzilla(this);
+	private int atomicCharge;
+	private boolean charging;
+
 	public EntityGodzilla(World par1World) {
 		super(par1World);
+		this.ignoreFrustumCheck = true;
+		
+		charging = false;
+		//TODO : set atomicCharge to 0
+		atomicCharge = 100;
+	}
+	
+	public boolean isCharging() {
+		return charging;
 	}
 
+	public void setCharging(boolean charging) {
+		this.charging = charging;
+	}
+
+	public int getAtomicCharge(){
+		return atomicCharge;
+	}
+	
 	@Override
 	protected void entityInit() {
 		super.entityInit();
@@ -27,7 +47,11 @@ public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity 
 	public void onUpdate()
 	{
             super.onUpdate();
-        }
+            // TODO : CHECK WHERE ANIMATION IN MCA 1.2 IS FUCKED UP!
+//            if(!this.getAnimationHandler().isAnimationActive("roar")) {
+//                this.getAnimationHandler().activateAnimation("roar", 0);
+//            }
+    }
 
 	@Override
 	public void readEntityFromNBT(NBTTagCompound nbttagcompound) {
