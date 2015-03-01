@@ -230,22 +230,22 @@ public abstract class AnimationHandler {
 						SLERPProgress = 1F;
 					}
 
-
 					if(prevRotationKeyFramePosition == 0 && !(nextRotationKeyFramePosition == 0))
 					{
 						Quaternion currentQuat = new Quaternion();
 						currentQuat.slerp(parts.get(boxName).getDefaultRotationAsQuaternion(), nextRotationKeyFrame.modelRenderersRotations.get(boxName), SLERPProgress);
-						box.getRotationMatrix().set(parts.get(boxName).getDefaultRotationAsQuaternion()).transpose();
+						box.getRotationMatrix().set(currentQuat).transpose();
 
 						anyRotationApplied = true;
 					} else if(!(prevRotationKeyFramePosition == 0) && !(nextRotationKeyFramePosition == 0))
 					{
 						Quaternion currentQuat = new Quaternion();
 						currentQuat.slerp(prevRotationKeyFrame.modelRenderersRotations.get(boxName), nextRotationKeyFrame.modelRenderersRotations.get(boxName), SLERPProgress);
-						box.getRotationMatrix().set(parts.get(boxName).getDefaultRotationAsQuaternion()).transpose();
+						box.getRotationMatrix().set(currentQuat).transpose();
 
 						anyRotationApplied = true;
 					}
+
 
 					//Translations
 					KeyFrame prevTranslationKeyFrame = channel.getPreviousTranslationKeyFrameForBox(boxName, entity.getAnimationHandler().animCurrentFrame.get(channel.name));

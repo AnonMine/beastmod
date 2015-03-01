@@ -48,9 +48,10 @@ public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity 
 	{
             super.onUpdate();
             // TODO : CHECK WHERE ANIMATION IN MCA 1.2 IS FUCKED UP!
-//            if(!this.getAnimationHandler().isAnimationActive("roar")) {
-//                this.getAnimationHandler().activateAnimation("roar", 0);
-//            }
+            if(!this.getAnimationHandler().isAnimationActive("roar")) {
+            	System.out.println("activate Roar");
+                this.getAnimationHandler().activateAnimation("roar", 0);
+            }
     }
 
 	@Override

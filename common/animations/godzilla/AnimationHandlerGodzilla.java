@@ -13,7 +13,7 @@ public class AnimationHandlerGodzilla extends AnimationHandler {
 	{
 	//animChannels.put("loop", new ChannelLoop("loop", 1.0F, 1, Channel.LOOP));
 		//animChannels.put("linear", new ChannelLinear("linear", 1.0F, 1, Channel.LINEAR));
-		animChannels.put("roar", new ChannelRoar("roar", 1.0F, 1, Channel.LINEAR));
+		animChannels.put("roar", new ChannelRoar("roar", 5.0F, 32, Channel.LINEAR));
 	}
 	public AnimationHandlerGodzilla(IMCAnimatedEntity entity) {
 		super(entity);
@@ -29,11 +29,18 @@ public class AnimationHandlerGodzilla extends AnimationHandler {
 		super.stopAnimation(animChannels, name);
 	}
 
+
 	@Override
-	public void fireAnimationEventClientSide(Channel anim, float prevFrame, float frame) {
+	public void fireAnimationEventClientSide(Channel anim, float prevFrame,
+			float frame) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void fireAnimationEventServerSide(Channel anim, float prevFrame, float frame) {
+	public void fireAnimationEventServerSide(Channel anim, float prevFrame,
+			float frame) {
+		// TODO Auto-generated method stub
+		
 	}
 }
