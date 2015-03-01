@@ -1,19 +1,27 @@
 package anonmine.beastmod.common.entity.giantmonster;
 
 import anonmine.beastmod.common.animations.godzilla.AnimationHandlerGodzilla;
+import anonmine.beastmod.common.entity.ai.EntityAIWatchPlayer;
 import anonmine.beastmod.common.mca.commonlibrary.IMCAnimatedEntity;
 import anonmine.beastmod.common.mca.commonlibrary.animation.AnimationHandler;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity {
 	protected AnimationHandler animHandler = new AnimationHandlerGodzilla(this);
 	private int atomicCharge;
 	private boolean charging;
+	//TODO : suppress roaring?
 
 	public EntityGodzilla(World par1World) {
 		super(par1World);
+		this.setSize(10, 30);
+		this.tasks.addTask(0, new EntityAIWatchPlayer(this, 60.0F));
 		this.ignoreFrustumCheck = true;
 		
 		charging = false;
@@ -48,9 +56,11 @@ public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity 
 	{
             super.onUpdate();
             // TODO : CHECK WHERE ANIMATION IN MCA 1.2 IS FUCKED UP!
-            if(!this.getAnimationHandler().isAnimationActive("roar")) {
-            	System.out.println("activate Roar");
-                this.getAnimationHandler().activateAnimation("roar", 0);
+            if (!this.getAnimationHandler().isAnimationActive("roar")){
+        		this.getAnimationHandler().activateAnimation("roar", 0);
+        		
+        		//Side side = FMLCommonHandler.instance().getEffectiveSide();
+        		//System.out.println("The side is " + side);
             }
     }
 

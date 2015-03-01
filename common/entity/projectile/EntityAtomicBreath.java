@@ -1,5 +1,6 @@
 package anonmine.beastmod.common.entity.projectile;
 
+import anonmine.beastmod.common.entity.giantmonster.EntityGodzilla;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
@@ -57,11 +58,11 @@ public class EntityAtomicBreath extends EntityThrowable{
 		//movingObjectPos.entityHit.setFire(3);
 		if (movingObjectPos.entityHit instanceof EntityLiving)
 			lobotomized((EntityLiving)movingObjectPos.entityHit);
+			
 		
 	}
 	private void lobotomized(EntityLiving e)
 	{
-		
 		e.tasks.taskEntries.clear();
 		e.targetTasks.taskEntries.clear();
 		System.out.print("LOBOTOMIZED");

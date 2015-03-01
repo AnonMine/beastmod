@@ -232,6 +232,7 @@ public abstract class AnimationHandler {
 
 					if(prevRotationKeyFramePosition == 0 && !(nextRotationKeyFramePosition == 0))
 					{
+						//System.out.println(SLERPProgress);
 						Quaternion currentQuat = new Quaternion();
 						currentQuat.slerp(parts.get(boxName).getDefaultRotationAsQuaternion(), nextRotationKeyFrame.modelRenderersRotations.get(boxName), SLERPProgress);
 						box.getRotationMatrix().set(currentQuat).transpose();

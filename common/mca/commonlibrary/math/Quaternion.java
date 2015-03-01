@@ -50,37 +50,35 @@ public class Quaternion implements java.io.Serializable {
 
 	/** Sets quaternion from the given matrix. */
 	public Quaternion(Matrix4f mat)
-	{
-		double T = 1 + mat.m00 + mat.m11 + mat.m22;
-		if( T > 0.00000001 ) //to avoid large distortions!
-		{
-			double S = Math.sqrt(T) * 2;
-			this.x = (float) (( mat.m12 - mat.m21 ) / S);
-			this.y = (float) (( mat.m02 - mat.m20 ) / S);
-			this.z = (float) (( mat.m10 - mat.m01 ) / S);
-			this.w = (float) (0.25 * S);
-		} else if(T == 0)
-		{
-			if ( mat.m00 > mat.m11 && mat.m00 > mat.m22 )  {	// Column 0: 
-				double S  = Math.sqrt( 1.0 + mat.m00 - mat.m11 - mat.m22 ) * 2;
-				this.x = (float) (0.25 * S);
-				this.y = (float) ((mat.m10 + mat.m01 ) / S);
-				this.z = (float) ((mat.m02 + mat.m20 ) / S);
-				this.w = (float) ((mat.m21 - mat.m12 ) / S);
-			} else if ( mat.m11 > mat.m22 ) {			// Column 1: 
-				double S  = Math.sqrt( 1.0 + mat.m11 - mat.m00 - mat.m22 ) * 2;
-				this.x = (float) ((mat.m10 + mat.m01 ) / S);
-				this.y = (float) (0.25 * S);
-				this.z = (float) ((mat.m21 + mat.m12 ) / S);
-				this.w = (float) ((mat.m02 - mat.m20 ) / S);
-			} else {						// Column 2:
-				double S  = Math.sqrt( 1.0 + mat.m22 - mat.m00 - mat.m11 ) * 2;
-				this.x = (float) ((mat.m02 + mat.m20 ) / S);
-				this.y = (float) ((mat.m21 + mat.m12 ) / S);
-				this.z = (float) (0.25 * S);
-				this.w = (float) ((mat.m10 - mat.m01 ) / S);
-			}
-		}
+	{	 
+		  float trace = mat.m00 + mat.m11 + mat.m22; // I removed + 1.0f; see discussion with Ethan
+		  if( trace > 0 ) {// I changed M_EPSILON to 0
+		    float s = (float)0.5f / (float)Math.sqrt(trace+ 1.0f);
+		    this.w = (float)0.25f / s;
+		    this.x = (float)( mat.m21 - mat.m12 ) * s;
+		    this.y = (float)( mat.m02 - mat.m20 ) * s;
+		    this.z = (float)( mat.m10 - mat.m01 ) * s;
+		  } else {
+		    if ( mat.m00 > mat.m11 && mat.m00 > mat.m22 ) {
+		      float s = (float)2.0f * (float)Math.sqrt( 1.0f + mat.m00 - mat.m11 - mat.m22);
+		      this.w = (float)(mat.m21 - mat.m12 ) / s;
+		      this.x = (float)0.25f * s;
+		      this.y = (float)(mat.m01 + mat.m10 ) / s;
+		      this.z = (float)(mat.m02 + mat.m20 ) / s;
+		    } else if (mat.m11 > mat.m22) {
+		      float s = (float)2.0f * (float)Math.sqrt( 1.0f + mat.m11 - mat.m00 - mat.m22);
+		      this.w = (float)(mat.m02 - mat.m20 ) / s;
+		      this.x = (float)(mat.m01 + mat.m10 ) / s;
+		      this.y = (float)0.25f * s;
+		      this.z = (float)(mat.m12 + mat.m21 ) / s;
+		    } else {
+		      float s = (float)2.0f * (float)Math.sqrt( 1.0f + mat.m22 - mat.m00 - mat.m11 );
+		      this.w = (float)(mat.m10 - mat.m01 ) / s;
+		      this.x = (float)(mat.m02 + mat.m20 ) / s;
+		      this.y = (float)(mat.m12 + mat.m21 ) / s;
+		      this.z = (float)0.25f * s;
+		    }
+		  }
 	}
 
 	/**

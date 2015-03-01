@@ -289,8 +289,8 @@ public class ModelGodzilla extends ModelBase {
 
 
 		Bone = new MCAModelRenderer(this, "Bone", 0 , 0);
-		Bone.setInitialRotationPoint (0.2F,267.0F,124.8F);
-		Bone.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(0.9271258F,0.0F,0.0F,0.3747502F)).transpose());
+		Bone.setInitialRotationPoint (-0.2F,267.0F,-124.8F);
+		Bone.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.0F,-0.3747502F,0.9271258F,-0.0F)).transpose());
 		parts.put(Bone.boxName,Bone);
 		
 		fingerBone1_L = new MCAModelRenderer(this, "fingerBone1_L", 0 , 0);
@@ -404,13 +404,13 @@ public class ModelGodzilla extends ModelBase {
 		parts.put(handBone4_R.boxName,handBone4_R);
 		
 		headBone = new MCAModelRenderer(this, "headBone", 0 , 0);
-		headBone.setInitialRotationPoint (0.0F,-0.0F,14.0F);
-		headBone.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.0345636F,-0.0F,-0.0F,0.9994025F)).transpose());
+		headBone.setInitialRotationPoint (0.0F,0.0F,14.0F);
+		headBone.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.0345636F,0.0F,-0.0F,0.9994025F)).transpose());
 		parts.put(headBone.boxName,headBone);
 		
 		headBoneAll = new MCAModelRenderer(this, "headBoneAll", 0 , 0);
-		headBoneAll.setInitialRotationPoint (0.0F,-0.0F,11.6F);
-		headBoneAll.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.1962057F,-0.0F,-0.0F,0.9805627F)).transpose());
+		headBoneAll.setInitialRotationPoint (0.0F,0.0F,11.6F);
+		headBoneAll.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.1962058F,-0.0F,-0.0F,0.9805627F)).transpose());
 		parts.put(headBoneAll.boxName,headBoneAll);
 		
 		hipsLeftBone = new MCAModelRenderer(this, "hipsLeftBone", 0 , 0);
@@ -424,8 +424,8 @@ public class ModelGodzilla extends ModelBase {
 		parts.put(hipsRightBone.boxName,hipsRightBone);
 		
 		jawBone = new MCAModelRenderer(this, "jawBone", 0 , 0);
-		jawBone.setInitialRotationPoint (0.0F,-0.0F,14.0F);
-		jawBone.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.2679889F,-0.0F,-0.0F,0.9634221F)).transpose());
+		jawBone.setInitialRotationPoint (0.0F,0.0F,14.0F);
+		jawBone.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.2679889F,0.0F,-0.0F,0.963422F)).transpose());
 		parts.put(jawBone.boxName,jawBone);
 		
 		lowerArmBone_L = new MCAModelRenderer(this, "lowerArmBone_L", 0 , 0);
@@ -459,18 +459,18 @@ public class ModelGodzilla extends ModelBase {
 		parts.put(middleBodyBone.boxName,middleBodyBone);
 		
 		neckBone0 = new MCAModelRenderer(this, "neckBone0", 0 , 0);
-		neckBone0.setInitialRotationPoint (-0.0F,-0.0F,16.3F);
-		neckBone0.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.0102505F,-0.0013639F,-2.89e-05F,0.9999465F)).transpose());
+		neckBone0.setInitialRotationPoint (-0.0F,0.0F,16.3F);
+		neckBone0.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.0102505F,-0.001364F,-2.82e-05F,0.9999465F)).transpose());
 		parts.put(neckBone0.boxName,neckBone0);
 		
 		neckBone1 = new MCAModelRenderer(this, "neckBone1", 0 , 0);
 		neckBone1.setInitialRotationPoint (-0.0F,0.0F,26.6F);
-		neckBone1.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.1669392F,-1e-07F,2e-07F,0.9859672F)).transpose());
+		neckBone1.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(-0.1669392F,-0.0F,-3e-07F,0.9859672F)).transpose());
 		parts.put(neckBone1.boxName,neckBone1);
 		
 		neckBone2 = new MCAModelRenderer(this, "neckBone2", 0 , 0);
 		neckBone2.setInitialRotationPoint (-0.0F,0.0F,30.6F);
-		neckBone2.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(0.0431949F,0.0013106F,-0.0003789F,0.9990658F)).transpose());
+		neckBone2.setInitialRotationMatrix(new Matrix4f().set(new Quaternion(0.0431949F,0.0013105F,-0.0003793F,0.9990658F)).transpose());
 		parts.put(neckBone2.boxName,neckBone2);
 		
 		neckBone3 = new MCAModelRenderer(this, "neckBone3", 0 , 0);
