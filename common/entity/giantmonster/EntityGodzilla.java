@@ -40,7 +40,12 @@ public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity 
 	public int getAtomicCharge(){
 		return atomicCharge;
 	}
-	
+
+	@Override
+    protected boolean canDespawn()
+    {
+        return false;
+    }
 	@Override
 	protected void entityInit() {
 		super.entityInit();

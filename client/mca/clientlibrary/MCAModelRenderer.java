@@ -226,8 +226,6 @@ public class MCAModelRenderer extends ModelRenderer
 	{
 		defaultRotationMatrix = matrix;
 		setRotationMatrix(matrix);
-		Matrix4f test = new Matrix4f();
-		test.transpose(rotationMatrix);
 		this.defaultRotationAsQuaternion = Utils.getQuaternionFromMatrix(rotationMatrix);
 	}
 

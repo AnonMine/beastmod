@@ -3,8 +3,10 @@ package anonmine.beastmod.init;
 import anonmine.beastmod.BeastMod;
 import anonmine.beastmod.client.renderer.entity.RenderAtomicBreath;
 import anonmine.beastmod.client.renderer.entity.RenderGodzilla;
+import anonmine.beastmod.client.renderer.entity.RenderTest;
 import anonmine.beastmod.common.entity.giantmonster.EntityGodzilla;
 import anonmine.beastmod.common.entity.projectile.EntityAtomicBreath;
+import anonmine.beastmod.common.entity.testmonster.EntityTest;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
@@ -22,12 +24,14 @@ public class BeastModEntities {
 		
 		createEntity(EntityAtomicBreath.class,"AtomicBreath");
 		createGiantMonsterEntity(EntityGodzilla.class,"Godzilla",0x5D1F26,0x3DB564);
+		createMonsterEntity(EntityTest.class,"Test",0x131626,0x24B534);
 		
 	}
 	public static void registerRenders(){
 		
 		RenderingRegistry.registerEntityRenderingHandler(EntityAtomicBreath.class, new RenderAtomicBreath(Minecraft.getMinecraft().getRenderManager()));
-		RenderingRegistry.registerEntityRenderingHandler(EntityGodzilla.class,new RenderGodzilla(10) );
+		RenderingRegistry.registerEntityRenderingHandler(EntityGodzilla.class,new RenderGodzilla() );		
+		RenderingRegistry.registerEntityRenderingHandler(EntityTest.class,new RenderTest() );
 		
 	}
 	private static void createEntity(Class entityClass,String entityName){
@@ -40,6 +44,13 @@ public class BeastModEntities {
 		int randomId = EntityRegistry.findGlobalUniqueEntityId();
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, randomId);
 		EntityRegistry.registerModEntity(entityClass, entityName, randomId, BeastMod.modInstance, 400, 1, true);
+
+		createEgg(randomId,solidColor,spotColor);
+	}
+	private static void createMonsterEntity(Class entityClass,String entityName,int solidColor, int spotColor){
+		int randomId = EntityRegistry.findGlobalUniqueEntityId();
+		EntityRegistry.registerGlobalEntityID(entityClass, entityName, randomId);
+		EntityRegistry.registerModEntity(entityClass, entityName, randomId, BeastMod.modInstance, 64, 1, true);
 
 		createEgg(randomId,solidColor,spotColor);
 	}

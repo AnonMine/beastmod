@@ -9,26 +9,23 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import anonmine.beastmod.Reference;
-import anonmine.beastmod.client.model.ModelGodzilla;
-import anonmine.beastmod.client.renderer.entity.layers.LayerGodzillaAtomicCharge;
-import anonmine.beastmod.common.entity.giantmonster.EntityGodzilla;
+import anonmine.beastmod.client.model.ModelTest;
+import anonmine.beastmod.common.entity.testmonster.EntityTest;
 
-public class RenderGodzilla extends RenderLiving {
+public class RenderTest extends RenderLiving {
 
-	public static final ResourceLocation godzilla_texture = new ResourceLocation(Reference.MOD_ID + ":textures/entity/godzilla/godzilla.png");
-	public static ModelGodzilla modelGodzilla = new ModelGodzilla();	
+	public static final ResourceLocation Test_texture = new ResourceLocation("yourAssetsFolder", "textures/models/Test.png");
+	public static ModelTest modelTest = new ModelTest();	
 	public static float modelHeight = 2F;
 	
-	public RenderGodzilla()
+	public RenderTest()
     {
-        super(Minecraft.getMinecraft().getRenderManager(), modelGodzilla, 10F);
-        this.addLayer(new LayerGodzillaAtomicCharge(this));
+        super(Minecraft.getMinecraft().getRenderManager(), modelTest, 1F);
     }
 	
 	@Override
 	public void doRender(Entity _entity, double posX, double posY, double posZ, float var8, float var9) {
-		EntityGodzilla entity = (EntityGodzilla) _entity;
+		EntityTest entity = (EntityTest) _entity;
 				
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
@@ -47,6 +44,6 @@ public class RenderGodzilla extends RenderLiving {
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {
-		return godzilla_texture;
+		return Test_texture;
 	}
 }
