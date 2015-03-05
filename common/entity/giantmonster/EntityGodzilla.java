@@ -5,12 +5,15 @@ import anonmine.beastmod.common.entity.ai.EntityAIWanderDetailed;
 import anonmine.beastmod.common.entity.ai.EntityAIWatchPlayer;
 import anonmine.beastmod.common.mca.commonlibrary.IMCAnimatedEntity;
 import anonmine.beastmod.common.mca.commonlibrary.animation.AnimationHandler;
+import anonmine.beastmod.common.pathfinding.PathNavigateGroundDestroyer;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.pathfinding.PathNavigate;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -25,7 +28,7 @@ public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity 
 		super(par1World);
 		this.setSize(10, 30);
         this.tasks.addTask(1, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIWanderDetailed(this, 0.8D, 30 , 7 , 10 ));
+        this.tasks.addTask(2, new EntityAIWanderDetailed(this, 0.8D, 30 , 7 , 30 ));
 		this.ignoreFrustumCheck = true;
 		
 		charging = false;
@@ -52,6 +55,11 @@ public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity 
 	}
 
 	@Override
+    protected PathNavigate func_175447_b(World worldIn)
+    {
+        return new PathNavigateGroundDestroyer(this, worldIn);
+    }
+	@Override
     protected boolean canDespawn()
     {
         return false;
@@ -70,7 +78,7 @@ public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity 
 	public void onUpdate()
 	{
             super.onUpdate();
-            // TODO : CHECK WHERE ANIMATION IN MCA 1.2 IS FUCKED UP!
+            
             if (!this.getAnimationHandler().isAnimationActive("roar")){
         		this.getAnimationHandler().activateAnimation("roar", 0);
         		
