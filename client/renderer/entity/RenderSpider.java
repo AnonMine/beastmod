@@ -9,23 +9,24 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import anonmine.beastmod.client.model.ModelTest;
-import anonmine.beastmod.common.entity.testmonster.EntityTest;
+import anonmine.beastmod.Reference;
+import anonmine.beastmod.client.model.ModelTarantula;
+import anonmine.beastmod.common.entity.giantmonster.EntityTarantula;
 
-public class RenderTest extends RenderLiving {
+public class RenderSpider extends RenderLiving {
 
-	public static final ResourceLocation Test_texture = new ResourceLocation("yourAssetsFolder", "textures/models/Test.png");
-	public static ModelTest modelTest = new ModelTest();	
-	public static float modelHeight = 2F;
+	public static final ResourceLocation Tarantula_texture = new ResourceLocation(Reference.MOD_ID + ":textures/entity/tarantula/tarantula.png");
+	public static ModelTarantula modelTarantula = new ModelTarantula();	
+	public static float modelHeight = 0.4F;
 	
-	public RenderTest()
+	public RenderSpider()
     {
-        super(Minecraft.getMinecraft().getRenderManager(), modelTest, 1F);
+        super(Minecraft.getMinecraft().getRenderManager(), modelTarantula, 1F);
     }
 	
 	@Override
 	public void doRender(Entity _entity, double posX, double posY, double posZ, float var8, float var9) {
-		//EntityTest entity = (EntityTest) _entity;
+		//EntitySpider entity = (EntitySpider) _entity;
 				
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_CULL_FACE);
@@ -40,10 +41,11 @@ public class RenderTest extends RenderLiving {
 		GL11.glRotatef(180F, 0, 1F, 0F);
 		GL11.glRotatef(180F, 0, 0, 1F);
 		GL11.glTranslatef(0, modelHeight, 0);
+		GL11.glScalef(0.2f, 0.2f, 0.2f);
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(Entity var1) {
-		return Test_texture;
+		return Tarantula_texture;
 	}
 }

@@ -230,7 +230,7 @@ public abstract class AnimationHandler {
 						SLERPProgress = 1F;
 					}
 
-					if(prevRotationKeyFramePosition == 0 && !(nextRotationKeyFramePosition == 0))
+					if(prevRotationKeyFrame == null && !(nextRotationKeyFramePosition == 0))
 					{
 						//System.out.println(SLERPProgress);
 						Quaternion currentQuat = new Quaternion();
@@ -238,7 +238,7 @@ public abstract class AnimationHandler {
 						box.getRotationMatrix().set(currentQuat).transpose();
 
 						anyRotationApplied = true;
-					} else if(!(prevRotationKeyFramePosition == 0) && !(nextRotationKeyFramePosition == 0))
+					} else if(!(prevRotationKeyFrame == null) && !(nextRotationKeyFramePosition == 0))
 					{
 						Quaternion currentQuat = new Quaternion();
 						currentQuat.slerp(prevRotationKeyFrame.modelRenderersRotations.get(boxName), nextRotationKeyFrame.modelRenderersRotations.get(boxName), SLERPProgress);
