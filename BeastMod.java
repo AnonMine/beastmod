@@ -49,7 +49,7 @@ public class BeastMod {
 	}
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event){
-		BeastModEntities.postInit();
+	//	BeastModEntities.postInit();
 	}
 	
 }
