@@ -1,10 +1,13 @@
 package anonmine.beastmod.common.entity.giantmonster;
 
 import anonmine.beastmod.common.animations.godzilla.AnimationHandlerGodzilla;
+import anonmine.beastmod.common.entity.ai.EntityAIWanderDetailed;
 import anonmine.beastmod.common.entity.ai.EntityAIWatchPlayer;
 import anonmine.beastmod.common.mca.commonlibrary.IMCAnimatedEntity;
 import anonmine.beastmod.common.mca.commonlibrary.animation.AnimationHandler;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -21,14 +24,21 @@ public class EntityGodzilla extends EntityCreature implements IMCAnimatedEntity 
 	public EntityGodzilla(World par1World) {
 		super(par1World);
 		this.setSize(10, 30);
-		this.tasks.addTask(0, new EntityAIWatchPlayer(this, 60.0F));
+        this.tasks.addTask(1, new EntityAISwimming(this));
+        this.tasks.addTask(2, new EntityAIWanderDetailed(this, 0.8D, 30 , 7 , 10 ));
 		this.ignoreFrustumCheck = true;
 		
 		charging = false;
 		//TODO : set atomicCharge to 0
 		atomicCharge = 100;
 	}
-	
+
+    protected void applyEntityAttributes()
+    {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(100.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.30000001192092896D);
+    }
 	public boolean isCharging() {
 		return charging;
 	}

@@ -2130,7 +2130,8 @@ public class ModelTarantula extends ModelBase {
 		EntityTarantula entity = (EntityTarantula)oldEntity;
 
 		//Render every non-child part
-		if (limbSwingDistance > 0f){
+		if (limbSwingDistance > 0.001f){
+			//System.out.println("LimbSwing = " + limbSwingDistance + entity.hasHome());
 			if (!entity.getAnimationHandler().isAnimationActive("walking")){
 				entity.getAnimationHandler().activateAnimation("walking", 0);
 			}

@@ -1,6 +1,5 @@
 package anonmine.beastmod;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -35,7 +34,6 @@ public class BeastMod {
 		networkWraper = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.MOD_ID);
 		
 		FMLCommonHandler.instance().bus().register(eventHandler);
-		MinecraftForge.EVENT_BUS.register(eventHandler);
 		
 		BeastModItems.init();
 		BeastModItems.register();

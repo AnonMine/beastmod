@@ -13,7 +13,7 @@ public class AnimationHandlerTarantula extends AnimationHandler {
 	{
 	//animChannels.put("loop", new ChannelLoop("loop", 1.0F, 1, Channel.LOOP));
 		//animChannels.put("linear", new ChannelLinear("linear", 1.0F, 1, Channel.LINEAR));
-		animChannels.put("walking", new ChannelWalking("walking", 5.0F, 32, Channel.LOOP));
+		animChannels.put("walking", new ChannelWalking("walking", 20.0F, 32, Channel.LOOP));
 	}
 	public AnimationHandlerTarantula(IMCAnimatedEntity entity) {
 		super(entity);

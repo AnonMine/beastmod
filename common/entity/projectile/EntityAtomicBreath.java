@@ -63,8 +63,7 @@ public class EntityAtomicBreath extends EntityThrowable{
 	}
 	private void lobotomized(EntityLiving e)
 	{
-		e.tasks.taskEntries.clear();
-		e.targetTasks.taskEntries.clear();
+		//se.tasks.removeTask(p_85156_1_);
 		System.out.print("LOBOTOMIZED");
 	}
 	private void DestroySelf(){
